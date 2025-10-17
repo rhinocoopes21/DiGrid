@@ -1,0 +1,284 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Di Grid & Mariscos Kitchen — Menu & Services</title>
+    <style>
+        :root{
+            --bg:#0f1720; --card:#0b1220; --accent:#ff6b35; --muted:#9aa7b2; --glass:rgba(255,255,255,0.06);
+            --maxw:1100px;
+            font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+            color:#e6eef6;
+        }
+        *{box-sizing:border-box}
+        html,body{height:100%; margin:0; background:linear-gradient(180deg,#071028 0%,#071b2b 60%); -webkit-font-smoothing:antialiased}
+        .app{max-width:var(--maxw); margin:28px auto; padding:20px; border-radius:12px; background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01)); box-shadow:0 6px 30px rgba(2,6,23,0.6)}
+        header{display:flex; align-items:center; gap:16px; margin-bottom:18px}
+        .brand{display:flex; flex-direction:column}
+        .brand h1{margin:0; font-size:20px; letter-spacing:0.6px}
+        .brand p{margin:0; color:var(--muted); font-size:13px}
+        nav{margin-left:auto}
+        nav a{background:transparent; color:var(--muted); padding:8px 12px; text-decoration:none; border-radius:8px; cursor:pointer}
+        nav a.active{color:var(--accent); background:var(--glass); border:1px solid rgba(255,255,255,0.03)}
+        main{display:grid; grid-template-columns:1fr 320px; gap:18px}
+        @media (max-width:880px){ main{grid-template-columns:1fr} nav{display:none} header{gap:10px} }
+        /* Slideshow */
+        .slideshow{position:relative; overflow:hidden; border-radius:12px; background:#020617; min-height:360px; display:flex; align-items:center; justify-content:center}
+        .slides{display:flex; transition:transform 0.6s cubic-bezier(.2,.9,.2,1); will-change:transform}
+        .slide{min-width:100%; position:relative; color:#fff}
+        .slide img{width:100%; height:420px; object-fit:cover; display:block; filter:brightness(.85)}
+        .caption{
+            position:absolute; left:18px; right:18px; bottom:18px; background:linear-gradient(180deg, rgba(0,0,0,0.05), rgba(0,0,0,0.38));
+            padding:14px 16px; border-radius:10px; display:flex; justify-content:space-between; gap:10px; align-items:center;
+        }
+        .caption .left{max-width:70%}
+        .caption h2{margin:0; font-size:18px}
+        .caption p{margin:4px 0 0; color:var(--muted); font-size:13px}
+        .controls{position:absolute; inset:0; display:flex; justify-content:space-between; align-items:center; pointer-events:none}
+        .controls button{pointer-events:auto; background:rgba(0,0,0,0.45); border:0; color:#fff; width:44px; height:44px; border-radius:8px; margin:12px; cursor:pointer}
+        .dots{display:flex; gap:6px; align-items:center}
+        .dot{width:10px; height:10px; background:rgba(255,255,255,0.18); border-radius:50%; cursor:pointer}
+        .dot.active{background:var(--accent); box-shadow:0 0 10px rgba(255,107,53,0.18)}
+        /* Right column cards */
+        .panel{display:flex; flex-direction:column; gap:12px}
+        .card{background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(0,0,0,0.06)); padding:14px; border-radius:10px; border:1px solid rgba(255,255,255,0.03)}
+        .card h3{margin:0 0 6px; font-size:15px}
+        .menu-list{display:grid; gap:8px}
+        .menu-item{display:flex; justify-content:space-between; color:var(--muted); font-size:14px}
+        .cta{display:flex; gap:10px; margin-top:6px}
+        .btn{background:var(--accent); color:#07121a; border:0; padding:10px 12px; border-radius:8px; cursor:pointer}
+        .muted{color:var(--muted); font-size:13px}
+        footer{margin-top:14px; color:var(--muted); font-size:13px; display:flex; justify-content:space-between; align-items:center}
+        .notice{background:linear-gradient(90deg, rgba(255,107,53,0.07), rgba(255,107,53,0.02)); padding:10px; border-radius:8px; color:var(--accent); border:1px solid rgba(255,107,53,0.08)}
+    </style>
+</head>
+<body>
+    <div class="app" id="app">
+        <header>
+            <div class="brand" aria-hidden="false">
+                <h1>Di Grid & Mariscos Kitchen</h1>
+                <p>Fresh seafood, grilled favorites & welcoming vibes</p>
+            </div>
+            <nav role="navigation" aria-label="Primary">
+                <a class="nav-link active" href="index.html">Home</a>
+                <a class="nav-link" href="menu.html">Menu</a>
+                <a class="nav-link" href="events.html">Events</a>
+                <a class="nav-link" href="contact.html">Contact</a>
+            </nav>
+        </header>
+
+        <main>
+            <section id="home">
+                <div class="slideshow" aria-roledescription="carousel">
+                    <div class="slides" id="slides" aria-live="polite">
+                        <!-- Slide 1 -->
+                        <figure class="slide">
+                            <img src="https://images.unsplash.com/photo-1490645935967-10de6ba17061?q=80&w=1600&auto=format&fit=crop&ixlib=rb-4.0.3&s=0f5bb80a91d4d8d1fefeea9b6b6a6b09" alt="Assorted mariscos platter with grilled shrimp and clams">
+                            <figcaption class="caption">
+                                <div class="left">
+                                    <h2>Fresh Mariscos Platter</h2>
+                                    <p>Signature seafood — ceviche, shrimp, mussels & more.</p>
+                                </div>
+                                <div class="dots" aria-hidden="true">
+                                    <!-- dots inserted by JS -->
+                                </div>
+                            </figcaption>
+                        </figure>
+
+                        <!-- Slide 2 -->
+                        <figure class="slide">
+                            <img src="https://images.unsplash.com/photo-1544025162-d76694265947?q=80&w=1600&auto=format&fit=crop&ixlib=rb-4.0.3&s=b9d5ce6d9015d3bbd1b7ba4b8b9b8e25" alt="Grilled steak and sides">
+                            <figcaption class="caption">
+                                <div class="left">
+                                    <h2>Grilled Specialties</h2>
+                                    <p>Charred steaks, skewers, and house sides made to order.</p>
+                                </div>
+                                <div class="dots" aria-hidden="true"></div>
+                            </figcaption>
+                        </figure>
+
+                        <!-- Slide 3 -->
+                        <figure class="slide">
+                            <img src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?q=80&w=1600&auto=format&fit=crop&ixlib=rb-4.0.3&s=bf2d1c5cd3a9f2b0e0f9a4e2b7b1a6e5" alt="Cocktails and small plates">
+                            <figcaption class="caption">
+                                <div class="left">
+                                    <h2>Cocktails & Small Plates</h2>
+                                    <p>Shareable bites and a curated drink list for every mood.</p>
+                                </div>
+                                <div class="dots" aria-hidden="true"></div>
+                            </figcaption>
+                        </figure>
+
+                        <!-- Slide 4 (Hookah ad) -->
+                        <figure class="slide">
+                            <img src="https://images.unsplash.com/photo-1549880184-3bcd81c9d5c0?q=80&w=1600&auto=format&fit=crop&ixlib=rb-4.0.3&s=9f34adb1b2f5f9b4f0b0b0b0b0b0b0b0" alt="Hookah on a table in lounge">
+                            <figcaption class="caption">
+                                <div class="left">
+                                    <h2>Hookahs Available</h2>
+                                    <p>Ask our waitress about hookah options and flavors.</p>
+                                </div>
+                                <div class="dots" aria-hidden="true"></div>
+                            </figcaption>
+                        </figure>
+
+                        <!-- Slide 5 -->
+                        <figure class="slide">
+                            <img src="https://images.unsplash.com/photo-1528605248644-14dd04022da1?q=80&w=1600&auto=format&fit=crop&ixlib=rb-4.0.3&s=8b9a5b9b6a4b7b7a8f6e3b2a1c5d9e6f" alt="Private event table set up">
+                            <figcaption class="caption">
+                                <div class="left">
+                                    <h2>Private Events & Catering</h2>
+                                    <p>Reserve space or order catering for special occasions.</p>
+                                </div>
+                                <div class="dots" aria-hidden="true"></div>
+                            </figcaption>
+                        </figure>
+                    </div>
+
+                    <div class="controls" aria-hidden="true">
+                        <button id="prev" aria-label="Previous slide">◀</button>
+                        <button id="next" aria-label="Next slide">▶</button>
+                    </div>
+                </div>
+            </section>
+
+            <aside class="panel" aria-label="Side panel">
+                <div class="card">
+                    <h3>Today's Highlights</h3>
+                    <div class="menu-list">
+                        <div class="menu-item"><span>Camaron al Mojo</span><strong>$16</strong></div>
+                        <div class="menu-item"><span>Paella Mar y Tierra</span><strong>$28</strong></div>
+                        <div class="menu-item"><span>Grilled Octopus</span><strong>$22</strong></div>
+                        <div class="menu-item"><span>House Margarita</span><strong>$8</strong></div>
+                    </div>
+                    <div class="cta">
+                        <button class="btn" id="reserve">Reserve a Table</button>
+                        <button class="btn" id="call">Call Now</button>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <h3>Services</h3>
+                    <p class="muted">Dine-in • Takeout • Catering • Private Events</p>
+                </div>
+
+                <div class="card notice">
+                    Hookahs available — please ask our waitress for details and flavors.
+                </div>
+            </aside>
+        </main>
+
+        <footer>
+            <div>9A Chelsea Avenue — Open Mon–Sat 11am–10pm</div>
+            <div class="muted">© Di Grid & Mariscos Kitchen</div>
+        </footer>
+    </div>
+
+    <script>
+        // GitHub Copilot - Single-file SPA slideshow + simple nav
+        (function(){
+            const slidesEl = document.getElementById('slides');
+            const slides = Array.from(slidesEl.children);
+            const prev = document.getElementById('prev');
+            const next = document.getElementById('next');
+            const dotsContainer = slides[0].querySelector('.dots').parentNode.querySelector('.dots');
+            let index = 0;
+            let autoplay = true;
+            let timer = null;
+
+            // create dots
+            const dots = slides.map((s, i) => {
+                const d = document.createElement('div');
+                d.className = 'dot' + (i===0 ? ' active' : '');
+                d.setAttribute('data-index', i);
+                d.addEventListener('click', () => { goTo(i); restart(); });
+                dotsContainer.appendChild(d);
+                return d;
+            });
+
+            function update() {
+                slidesEl.style.transform = `translateX(-${index * 100}%)`;
+                dots.forEach((d,i)=> d.classList.toggle('active', i===index));
+            }
+
+            function goTo(i){
+                index = (i + slides.length) % slides.length;
+                update();
+            }
+
+            prev.addEventListener('click', () => { goTo(index-1); restart(); });
+            next.addEventListener('click', () => { goTo(index+1); restart(); });
+
+            // autoplay
+            function tick(){
+                if(!autoplay) return;
+                index = (index+1) % slides.length;
+                update();
+            }
+            function restart(){
+                autoplay = true;
+                clearInterval(timer);
+                timer = setInterval(tick, 4500);
+            }
+            timer = setInterval(tick, 4500);
+
+            // keyboard
+            window.addEventListener('keydown', (e) => {
+                if(e.key === 'ArrowLeft') { goTo(index-1); restart(); }
+                if(e.key === 'ArrowRight') { goTo(index+1); restart(); }
+            });
+
+            // simple SPA nav (scroll to sections)
+            // mark active nav link based on current page; allow smooth scroll for Home when already on index.html
+            (function(){
+                const links = document.querySelectorAll('nav a');
+                const currentFile = (location.pathname.split('/').pop() || 'index.html').toLowerCase();
+                links.forEach(link => {
+                    const hrefFile = (link.getAttribute('href').split('/').pop() || '').toLowerCase();
+                    if(hrefFile === currentFile || (hrefFile === 'index.html' && currentFile === '')) {
+                        link.classList.add('active');
+                    } else {
+                        link.classList.remove('active');
+                    }
+                    // if user clicks Home while already on index.html, prevent reload and smooth-scroll
+                    if(hrefFile === 'index.html'){
+                        link.addEventListener('click', (e) => {
+                            if(currentFile === 'index.html'){
+                                e.preventDefault();
+                                document.getElementById('home').scrollIntoView({behavior:'smooth'});
+                                // update active styling
+                                links.forEach(l=>l.classList.remove('active'));
+                                link.classList.add('active');
+                            }
+                        });
+                    }
+                });
+            })();
+
+            // simple actions
+            document.getElementById('reserve').addEventListener('click', () => {
+                alert('To reserve a table please call us or ask in person. We look forward to serving you.');
+            });
+            document.getElementById('call').addEventListener('click', () => {
+                const primary = '+18766670111';
+                const alt = '+18767826477';
+                const usePrimary = confirm('Call 876-667-0111? Press OK to call, Cancel to call 876-782-6477.');
+                window.location.href = 'tel:' + (usePrimary ? primary : alt);
+            });
+
+            // touch swipe
+            let startX = null;
+            slidesEl.addEventListener('touchstart', (e)=> startX = e.changedTouches[0].clientX);
+            slidesEl.addEventListener('touchend', (e)=>{
+                if(startX === null) return;
+                const dx = e.changedTouches[0].clientX - startX;
+                if(Math.abs(dx) > 50){
+                    if(dx > 0) goTo(index-1); else goTo(index+1);
+                    restart();
+                }
+                startX = null;
+            });
+        })();
+    </script>
+</body>
+</html>
